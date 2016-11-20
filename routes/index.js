@@ -20,8 +20,8 @@ var Meal = require("../models/meal.js");
    var jsonData = {
    	'name': 'node-express-api-boilerplate',
    	'api-status':'OK',
-     'instructions': "Text your meal to (678)-264-6646",
-     'format': 'type,rating,place,location'
+     'instructions': "Text (646) 762-0870",
+     'format': 'Tell me what\'s on your mind'
    }
 
    // respond with json data
