@@ -66,13 +66,13 @@ router.post('/twilio-callback', function(req, res) {
         console.log(word);
         var response;
 
-        if (word === /hello/i) {
+        if (word === '/hello/i') {
             response = "Hey! I'm your virtual internet self. You can ask me anything.";
-        } else if (word === /me/i) {
+        } else if (word === '/me/i') {
             response = "You really want to know?";
-        } else if (word === /I/i) {
+        } else if (word === '/I/i') {
             response = "I or we?";
-        }else if (word === /we/i) {
+        }else if (word === '/we/i') {
             response = "We love to talk.";
         }else {
             response = "Interesting... Tell me more.";
