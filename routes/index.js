@@ -3,7 +3,7 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var twilio = require('twilio');
 var geocoder = require('geocoder');
-
+var tracery = require('tracery-grammar');
 
 // our db model
 var Status = require("../models/status.js");
@@ -24,7 +24,7 @@ var Meal = require("../models/meal.js");
      'format': 'Tell me what\'s on your mind'
    }
 
-   // respond with json data
+// respond with json data
    res.json(jsonData)
  });
 
@@ -32,6 +32,15 @@ var Meal = require("../models/meal.js");
 router.get('/sample-page', function(req,res){
   res.render('sample.html')
 })
+
+// Let's create a some interactions using the node tracery grammar module.
+var grammar = tracery.createGrammar({
+  'animal': ['panda','fox','capybara','iguana'],
+  'emotion': ['sad','happy','angry','jealous'],
+  'origin':['I am #emotion.a# #animal#.'],
+});
+
+var example = grammar.addModifiers(tracery.baseEngModifiers);
 
 // /**
 //  * POST '/api/create'
@@ -81,10 +90,12 @@ router.post('/twilio-callback', function(req,res){
 
   for (var i = 0; i < tokens.length; i++) {
     var word = tokens[i];
-    if(word == 'hello'){
-      var response = "Hi there!";
-    } else{
-      var response = "I'm not sure."
+    if(word == 'hello'||'Hello'||'Hi'||'hi'||'hey'||'Hey'){
+      var response = "Hi there! This is yourself from the otherside of your black mirror ;). Ask me anything!";
+    } else if(word == 'my'||'My'||'me'||'Me'||'I'||'am'){
+      var response = example;
+    }else{
+      var response = "Interesting... Tell me more."
     }
     var result = response;
   }
