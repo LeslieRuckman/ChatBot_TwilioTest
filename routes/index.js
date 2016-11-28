@@ -75,7 +75,7 @@ router.post('/twilio-callback', function(req, res) {
         } else {
             var response = "Interesting... Tell me more.";
         }
-        twilioResp.sms = response;
+        twilioResp.sms(response);
     }
 
 
