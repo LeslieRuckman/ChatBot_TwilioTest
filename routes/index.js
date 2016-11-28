@@ -64,17 +64,18 @@ router.post('/twilio-callback', function(req, res) {
     for (var i = 0; i < tokens.length; i++) {
         var word = tokens[i];
         console.log(word);
+        var response;
 
         if (word === 'hello') {
-            var response = "Hey! I'm your virtual internet self. You can ask me anything.";
+            response = "Hey! I'm your virtual internet self. You can ask me anything.";
             twilioResp.sms(response);
             res.send(twilioResp.toString());
         } else if (word === 'me') {
-            var response = example;
+            response = example;
             twilioResp.sms(response);
             res.send(twilioResp.toString());
         } else {
-            var response = "Interesting... Tell me more.";
+            response = "Interesting... Tell me more.";
             twilioResp.sms(response);
             res.send(twilioResp.toString());
         }
