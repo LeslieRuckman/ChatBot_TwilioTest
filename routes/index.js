@@ -65,14 +65,11 @@ router.post('/twilio-callback', function(req, res) {
         var word = tokens[i];
         console.log(word);
 
-        var greeting = 'Hi' || 'hi' || 'hey' || 'Hey';
-        var myself = 'my' || 'My' || 'me' || 'Me' || 'I' || 'am';
-
-        if (word === 'hello' || 'Hello') {
-            var response = "Hi there! This is yourself from the otherside of your black mirror, ask me anything.";
+        if (word === 'hello') {
+            var response = "Hey! I'm your virtual internet self. You can ask me anything.";
             twilioResp.sms(response);
             res.send(twilioResp.toString());
-        } else if (word === myself) {
+        } else if (word === 'me') {
             var response = example;
             twilioResp.sms(response);
             res.send(twilioResp.toString());
