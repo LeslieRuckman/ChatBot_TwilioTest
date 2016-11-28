@@ -51,16 +51,16 @@ router.post('/twilio-callback', function(req, res) {
     var incomingNum = req.body.From;
 
     // now, let's save it to our Database
-    var msgToSave = {
-        status: incomingMsg,
-        from: incomingNum
-    }
-    var status = new Status(msgToSave)
+    // var msgToSave = {
+    //     status: incomingMsg,
+    //     from: incomingNum
+    // }
+    // var status = new Status(msgToSave)
     var twilioResp = new twilio.TwimlResponse();
 
 // Now let's craft our response!
-
     var tokens = incomingMsg.split(/\W+/);
+
     for (var i = 0; i < tokens.length; i++) {
         var word = tokens[i];
         console.log(word);
@@ -141,26 +141,26 @@ router.get('/api/get/latest', function(req, res) {
 
 })
 
-
-router.get('/api/get/meals', function(req, res) {
-
-    Meal.find(function(err, data) {
-        if (err) {
-            var error = {
-                status: "ERROR",
-                message: err
-            }
-            res.json(error);
-        } else {
-            var jsonData = {
-                status: "OK",
-                meals: data
-            }
-            res.json(jsonData);
-        }
-    })
-
-})
+//
+// router.get('/api/get/meals', function(req, res) {
+//
+//     Meal.find(function(err, data) {
+//         if (err) {
+//             var error = {
+//                 status: "ERROR",
+//                 message: err
+//             }
+//             res.json(error);
+//         } else {
+//             var jsonData = {
+//                 status: "OK",
+//                 meals: data
+//             }
+//             res.json(jsonData);
+//         }
+//     })
+//
+// })
 
 
 
