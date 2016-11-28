@@ -90,11 +90,13 @@ router.post('/twilio-callback', function(req,res){
 
   for (var i = 0; i < tokens.length; i++) {
     var word = tokens[i];
+    console.log(word);
+    var greeting = 'Hi'||'hi'||'hey'||'Hey';
+    var myself = 'my'||'My'||'me'||'Me'||'I'||'am';
 
-
-    if(word === 'hello'||'Hello'||'Hi'||'hi'||'hey'||'Hey'){
+    if(word === 'hello'||'Hello'){
       var response = "Hi there! This is yourself from the otherside of your black mirror ;). Ask me anything!";
-    } else if(word === 'my'||'My'||'me'||'Me'||'I'||'am'){
+    } else if(word === myself){
       var response = example;
     } else{
       var response = "Interesting... Tell me more."
