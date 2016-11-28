@@ -33,15 +33,6 @@ router.get('/sample-page', function(req,res){
   res.render('sample.html')
 })
 
-// Let's create a some interactions using the node tracery grammar module.
-var grammar = tracery.createGrammar({
-  'animal': ['panda','fox','capybara','iguana'],
-  'emotion': ['sad','happy','angry','jealous'],
-  'origin':['I am #emotion.a# #animal#.'],
-});
-
-var example = grammar.addModifiers(tracery.baseEngModifiers);
-
 // /**
 //  * POST '/api/create'
 //  * Receives a POST request of the new animal, saves to db, responds back
@@ -77,7 +68,6 @@ router.post('/twilio-callback', function(req,res){
 // FromCountry: 'US'}
 
   console.log(incomingMsg);
-
   var incomingNum = req.body.From;
 
   // now, let's save it to our Database
@@ -87,10 +77,18 @@ router.post('/twilio-callback', function(req,res){
   }
 
   var tokens = incomingMsg.split(/\W+/);
-
   for (var i = 0; i < tokens.length; i++) {
     var word = tokens[i];
     console.log(word);
+
+    // Let's create a some interactions using the node tracery grammar module.
+    var grammar = tracery.createGrammar({
+      'animal': ['panda','fox','capybara','iguana'],
+      'emotion': ['sad','happy','angry','jealous'],
+      'origin':['I am #emotion.a# #animal#.'],
+    });
+
+    var example = grammar.addModifiers(tracery.baseEngModifiers);
 
     var greeting = 'Hi'||'hi'||'hey'||'Hey';
     var myself = 'my'||'My'||'me'||'Me'||'I'||'am';
