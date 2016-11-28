@@ -68,18 +68,14 @@ router.post('/twilio-callback', function(req, res) {
 
         if (word === 'hello') {
             response = "Hey! I'm your virtual internet self. You can ask me anything.";
-            twilioResp.sms(response);
-            res.send(twilioResp.toString());
         } else if (word === 'me') {
             response = "You really want to know?";
-            twilioResp.sms(response);
-            res.send(twilioResp.toString());
         } else {
             response = "Interesting... Tell me more.";
-            twilioResp.sms(response);
-            res.send(twilioResp.toString());
         }
     }
+    twilioResp.sms(response);
+    res.send(twilioResp.toString());
 
 
 
