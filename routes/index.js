@@ -70,13 +70,20 @@ router.post('/twilio-callback', function(req, res) {
 
         if (word === 'hello' || 'Hello') {
             var response = "Hi there! This is yourself from the otherside of your black mirror, ask me anything.";
+            twilioResp.sms(response);
+            res.send(twilioResp.toString());
         } else if (word === myself) {
             var response = example;
+            twilioResp.sms(response);
+            res.send(twilioResp.toString());
         } else {
             var response = "Interesting... Tell me more.";
+            twilioResp.sms(response);
+            res.send(twilioResp.toString());
         }
-        twilioResp.sms(response);
     }
+
+
 
 
     // status.save(function(err, data) {
