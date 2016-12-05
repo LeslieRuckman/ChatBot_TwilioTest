@@ -108,17 +108,17 @@ router.post('/twilio-callback', function(req, res) {
     // If we want to
     // nlp.text(response).to_present().text()
 
-    var response = negate;
-
-    for (var i = 0; i < tokens.length; i++) {
-        var word = tokens[i];
-        console.log(word);
-        var response;
+    // var response = negate;
+    //
+    // for (var i = 0; i < tokens.length; i++) {
+    //     var word = tokens[i];
+    //     console.log(word);
+    //     var response;
 
         // COME BACK WITH NLP for sure
         // var sentence = nlp.sentence_type(twilioResp);
 
-        if ( incomingMsg.includes('Hello') | incomingMsg.includes('hello')| incomingMsg.includes('hey')| incomingMsg.includes('Hey')| incomingMsg.includes('hi')| incomingMsg.includes('hi')) {
+        if (incomingMsg.includes('Hello') | incomingMsg.includes('hello')| incomingMsg.includes('hey')| incomingMsg.includes('Hey')| incomingMsg.includes('hi')| incomingMsg.includes('hi')) {
             response = "Hey! I'm your mirror self. You can ask me anything.";
         } else if (incomingMsg.includes('What is') && incomingMsg.includes('weather')) {
             response = "The weather on this side of the mirror is chill.";
