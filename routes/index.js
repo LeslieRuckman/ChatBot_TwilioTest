@@ -12,7 +12,7 @@ var geocoder = require('geocoder');
 var tracery = require('tracery-grammar');
 
 // NLP Compromise
-var nlp = require('nlp_compromise')
+let nlp = require('nlp_compromise')
 
 // our db model
 var Status = require("../models/status.js");
@@ -89,9 +89,9 @@ router.post('/twilio-callback', function(req, res) {
 
     // the actual message is contained in req.body.Body
     var incomingMsg = req.body.Body;
+    console.log(incomingMsg);
     // use terminal command - heroku logs --tail
     // to view the full list of attributes available
-    console.log(incomingMsg);
     var incomingNum = req.body.From;
 
     // now, let's save it to our Database
