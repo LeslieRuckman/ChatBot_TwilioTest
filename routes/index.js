@@ -12,7 +12,7 @@ var geocoder = require('geocoder');
 var tracery = require('tracery-grammar');
 
 // NLP Compromise
-let nlp = require('nlp_compromise')
+var nlp = require('nlp_compromise')
 
 // our db model
 var Status = require("../models/status.js");
@@ -105,9 +105,9 @@ router.post('/twilio-callback', function(req, res) {
     // Now let's craft our response!
     // var tokens = incomingMsg.split(/\W+/);
     var people = nlp.text(incomingMsg).people();
-    console.log = people;
+    console.log(people);
 
-    var response = people;
+    var response = incomingMsg;
 
     // for (var i = 0; i < tokens.length; i++) {
     //     var word = tokens[i];
