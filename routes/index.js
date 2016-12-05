@@ -104,10 +104,10 @@ router.post('/twilio-callback', function(req, res) {
 
     // Now let's craft our response!
     // var tokens = incomingMsg.split(/\W+/);
-    var people = nlp.text(incomingMsg).people();
-    console.log(people);
+    var negate = nlp.statement(incomingMsg).negate().text()
+    console.log(negate);
 
-    var response = incomingMsg;
+    var response = negate;
 
     // for (var i = 0; i < tokens.length; i++) {
     //     var word = tokens[i];
