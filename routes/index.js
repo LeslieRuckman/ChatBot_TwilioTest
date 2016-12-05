@@ -80,7 +80,7 @@ function parseResponse(resp) {
     var response = grammar.flatten('#sentence#')
     console.log(response)
     return response;
-  }
+}
 
 router.post('/twilio-callback', function(req, res) {
 
@@ -115,20 +115,88 @@ router.post('/twilio-callback', function(req, res) {
     //     console.log(word);
     //     var response;
 
-        // COME BACK WITH NLP for sure
-        // var sentence = nlp.sentence_type(twilioResp);
+    // COME BACK WITH NLP for sure
+    // var sentence = nlp.sentence_type(twilioResp);
 
-        if (incomingMsg.includes('Hello') | incomingMsg.includes('hello')| incomingMsg.includes('hey')| incomingMsg.includes('Hey')| incomingMsg.includes('hi')| incomingMsg.includes('hi')) {
-            response = "Hey! I'm your mirror self. You can ask me anything.";
-        } else if (incomingMsg.includes('What is') && incomingMsg.includes('weather')) {
-            response = "The weather on this side of the mirror is chill.";
-        } else if (incomingMsg.includes('What will')) {
-            response = "I can't predict the future.";
-        } else {
-            var negate = nlp.statement(incomingMsg).negate().text()
-            console.log(negate);
-            response = negate;
-        }
+    if (incomingMsg.includes('Hello') | incomingMsg.includes('hello') | incomingMsg.includes('hey') | incomingMsg.includes('Hey') | incomingMsg.includes('hi') | incomingMsg.includes('hi')) {
+        response = "Hey! I'm your mirror self. You can ask me anything.";
+    } else if (incomingMsg.includes('Who is your favorite') | incomingMsg.includes('who is your favorite') | incomingMsg.includes('who are your favorite') | incomingMsg.includes('Who are your favorite')) {
+        response = "I nornally don't like to play favorites, but you are pretty sweet.";
+    } else if (incomingMsg.includes('Who are you') | incomingMsg.includes('who are you') | incomingMsg.includes('Who am I') | incomingMsg.includes('who am I')) {
+        response = "We are the same person dummy.";
+    } else if (incomingMsg.includes('Who do you') | incomingMsg.includes('who do you')) {
+        var negate = nlp.statement(incomingMsg).negate().text()
+        console.log(negate);
+        response = negate;
+    } else if (incomingMsg.includes('What is') | incomingMsg.includes('what is') | incomingMsg.includes('what\'s') | incomingMsg.includes('What\'s') && incomingMsg.includes('weather')) {
+        response = "The weather on this side of the mirror is chill.";
+    } else if (incomingMsg.includes('What is') | incomingMsg.includes('what is') | incomingMsg.includes('what\'s') | incomingMsg.includes('What\'s') && incomingMsg.includes('your name')) {
+        response = "Uh, seriously? We have the same name.";
+    } else if (incomingMsg.includes('What is') | incomingMsg.includes('what is') | incomingMsg.includes('what\'s') | incomingMsg.includes('What\'s') && incomingMsg.includes('favorite')) {
+        response = "That's a tough one. I'm not sure, but I really like dolphins";
+    } else if (incomingMsg.includes('What is') | incomingMsg.includes('what is') | incomingMsg.includes('what\'s') | incomingMsg.includes('What\'s') && incomingMsg.includes('spirit animal') | incomingMsg.includes('Spirit Animal')) {
+        response = "Corgi Butts";
+    } else if (incomingMsg.includes('What is') | incomingMsg.includes('what is') | incomingMsg.includes('what\'s') | incomingMsg.includes('What\'s') && incomingMsg.includes('the name of')) {
+        response = "Hmmmm, let's say Susan";
+    } else if (incomingMsg.includes('What will') | incomingMsg.includes('what will') | incomingMsg.includes('What should') | incomingMsg.includes('what should')) {
+        response = "I can't predict the future.";
+    } else if (incomingMsg.includes('What is') | incomingMsg.includes('what is') | incomingMsg.includes('what\'s') | incomingMsg.includes('What\'s')) {
+        response = "Corgi Butts";
+    } else if (incomingMsg.includes('Where is') | incomingMsg.includes('where is')) {
+        response = "Where is....";
+    } else if (incomingMsg.includes('Where are') | incomingMsg.includes('where are')) {
+        response = "Where are....";
+    }  else if (incomingMsg.includes('Where will') | incomingMsg.includes('where will') | incomingMsg.includes('Where should') | incomingMsg.includes('where should')) {
+        response = "I can't predict the future.";
+    } else if (incomingMsg.includes('Where') | incomingMsg.includes('where')) {
+        response = "Where....";
+    } else if (incomingMsg.includes('When is') | incomingMsg.includes('when is')) {
+        response = "When is....";
+    } else if (incomingMsg.includes('When are') | incomingMsg.includes('when are')) {
+        response = "When are....";
+    } else if (incomingMsg.includes('When') | incomingMsg.includes('when')) {
+        response = "When....";
+    } else if (incomingMsg.includes('Why') | incomingMsg.includes('why')) {
+        response = "Why....";
+    } else if (incomingMsg.includes('How will') | incomingMsg.includes('how will') | incomingMsg.includes('How should') | incomingMsg.includes('how should')) {
+        response = "I can't predict the future.";
+    } else if (incomingMsg.includes('How is') | incomingMsg.includes('how is')) {
+        response = "How is...";
+    } else if (incomingMsg.includes('How are') | incomingMsg.includes('how are')) {
+        response = "How are...";
+    } else if (incomingMsg.includes('How') | incomingMsg.includes('how')) {
+        response = "How....";
+    } else if (incomingMsg.includes('Do') | incomingMsg.includes('do')) {
+        response = "yes";
+    } else if (incomingMsg.includes('Are you') | incomingMsg.includes('are you')) {
+        response = "nope";
+    } else if (incomingMsg.includes('Are they') | incomingMsg.includes('are they')) {
+        response = "They are not";
+    } else if (incomingMsg.includes('Are we') | incomingMsg.includes('are we')) {
+        response = "We are indeed.";
+    } else if (incomingMsg.includes('Thanks') | incomingMsg.includes('thanks') | incomingMsg.includes('Thank you') | incomingMsg.includes('thank you') | incomingMsg.includes('thnks') | incomingMsg.includes('thnx')) {
+        response = "You're welcome";
+    } else if (incomingMsg.includes('Cool') | incomingMsg.includes('cool')) {
+        response = "cool";
+    } else if (incomingMsg.includes('Sounds right') | incomingMsg.includes('spounds right') | incomingMsg.includes('Sounds good') | incomingMsg.includes('sounds good') | incomingMsg.includes('Sounds') | incomingMsg.includes('sounds')) {
+        response = "cool";
+    } else if (incomingMsg.includes('Yes') | incomingMsg.includes('yes') | incomingMsg.includes('Sure') | incomingMsg.includes('sure') | incomingMsg.includes('OK') | incomingMsg.includes('ok') | incomingMsg.includes('k')) {
+        response = "perfect";
+    } else if (incomingMsg.includes('No') | incomingMsg.includes('no') | incomingMsg.includes('Nope') | incomingMsg.includes('nope') | incomingMsg.includes('Never') | incomingMsg.includes('never')) {
+        response = "why not?";
+    }  else if (incomingMsg.includes('Bye') | incomingMsg.includes('bye')) {
+        response = "Bye";
+    } else if (incomingMsg.includes('Fuck') | incomingMsg.includes('fuck') | incomingMsg.includes('suck') | incomingMsg.includes('Suck') | incomingMsg.includes('Hate') | incomingMsg.includes('hate') | incomingMsg.includes('ass')|
+    incomingMsg.includes('Ass')| incomingMsg.includes('bitch')| incomingMsg.includes('Bitch')){
+        response = "Not nice...";
+    } else if (incomingMsg.includes('Yes') | incomingMsg.includes('yes') | incomingMsg.includes('Sure') | incomingMsg.includes('sure') | incomingMsg.includes('OK') | incomingMsg.includes('ok') | incomingMsg.includes('k')) {
+        response = "perfect";
+    } else if (incomingMsg.includes('Because') | incomingMsg.includes('because')) {
+        response = "Well I can't really disagree.";
+    } else { var negate = nlp.statement(incomingMsg).negate().text()
+        console.log(negate);
+        response = negate;
+    }
 
     twilioResp.sms(response);
     res.send(twilioResp.toString());
