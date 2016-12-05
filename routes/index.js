@@ -104,31 +104,32 @@ router.post('/twilio-callback', function(req, res) {
 
     // Now let's craft our response!
     // var tokens = incomingMsg.split(/\W+/);
-    var negate = nlp.statement(incomingMsg).negate().text()
-    console.log(negate);
+
+    // If we want to
+    // nlp.text(response).to_present().text()
 
     var response = negate;
 
-    // for (var i = 0; i < tokens.length; i++) {
-    //     var word = tokens[i];
-    //     console.log(word);
-    //     var response;
-    //
-    //     // COME BACK WITH NLP for sure
-    //     // var sentence = nlp.sentence_type(twilioResp);
-    //
-    //     if (word === 'Hello') {
-    //         response = "Hey! I'm your mirror self. You can ask me anything.";
-    //     } else if (word === 'me') {
-    //         response = "You really want to know?";
-    //     } else if (word === 'I') {
-    //         response = "I or we?";
-    //     } else if (word === 'we') {
-    //         response = "We love to talk.";
-    //     } else {
-    //         response = "Interesting... Tell me more.";
-    //     }
-    // }
+    for (var i = 0; i < tokens.length; i++) {
+        var word = tokens[i];
+        console.log(word);
+        var response;
+
+        // COME BACK WITH NLP for sure
+        // var sentence = nlp.sentence_type(twilioResp);
+
+        if ( incomingMsg.includes('Hello') | incomingMsg.includes('hello')| incomingMsg.includes('hey')| incomingMsg.includes('Hey')| incomingMsg.includes('hi')| incomingMsg.includes('hi')) {
+            response = "Hey! I'm your mirror self. You can ask me anything.";
+        } else if (incomingMsg.includes('What is') && incomingMsg.includes('weather')) {
+            response = "The weather on this side of the mirror is chill.";
+        } else if (incomingMsg.includes('What will')) {
+            response = "I can't predict the future.";
+        } else {
+            var negate = nlp.statement(incomingMsg).negate().text()
+            console.log(negate);
+            response = negate;
+        }
+    }
 
     twilioResp.sms(response);
     res.send(twilioResp.toString());
