@@ -129,7 +129,6 @@ router.post('/twilio-callback', function(req, res) {
             console.log(negate);
             response = negate;
         }
-    }
 
     twilioResp.sms(response);
     res.send(twilioResp.toString());
