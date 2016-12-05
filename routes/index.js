@@ -12,7 +12,10 @@ var geocoder = require('geocoder');
 var tracery = require('tracery-grammar');
 
 // NLP Compromise
-var nlp = require('nlp_compromise')
+var nlp = require('nlp_compromise');
+
+// Rita.js
+var rita = require('rita');
 
 // our db model
 var Status = require("../models/status.js");
@@ -191,6 +194,8 @@ router.post('/twilio-callback', function(req, res) {
         response = "Not nice...";
     } else if (incomingMsg.includes('Yes') | incomingMsg.includes('yes') | incomingMsg.includes('Sure') | incomingMsg.includes('sure') | incomingMsg.includes('OK') | incomingMsg.includes('ok') | incomingMsg.includes('k')) {
         response = "perfect";
+    }else if (incomingMsg.includes('Love') | incomingMsg.includes('love')) {
+        response = "You're the best!";
     } else if (incomingMsg.includes('Because') | incomingMsg.includes('because')) {
         response = "Well I can't really disagree.";
     } else { var negate = nlp.statement(incomingMsg).negate().text()
