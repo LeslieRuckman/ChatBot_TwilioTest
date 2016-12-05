@@ -107,7 +107,7 @@ router.post('/twilio-callback', function(req, res) {
     var people = nlp.text(incomingMsg).people();
     console.log = people;
 
-    var response = "Hey! We're just testing here.";
+    var response = people;
 
     // for (var i = 0; i < tokens.length; i++) {
     //     var word = tokens[i];
