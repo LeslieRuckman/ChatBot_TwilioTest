@@ -11,8 +11,12 @@ var geocoder = require('geocoder');
 // Tracery
 var tracery = require('tracery-grammar');
 
+// NLP Compromise
+var nlp = require('nlp_compromise')
+
 // our db model
 var Status = require("../models/status.js");
+
 
 /**
  * GET '/'
@@ -30,13 +34,53 @@ router.get('/', function(req, res) {
     }
 
     // respond with json data
-    res.json(jsonData)
+    res.render('index.html');
 });
 
 // simple route to show an HTML page
 // router.get('/sample-page', function(req,res){
 //   res.render('sample.html')
 // })
+
+// TAKING TRACERY SCRIPT TAG FROM BECCA'S CODE - LINE 67 of index.js
+function parseResponse(resp) {
+    var who = [];
+    var what = [];
+    var where = [];
+    var when = [];
+    var why = [];
+    var how = [];
+    var other = [];
+
+    //the who is an array of names - add the nouns to a tracery grammar
+
+    var whoSyntax = {
+        "sentence": ["It is a #noun#. I see a #noun#."],
+        "noun": tags
+    };
+    var whatSyntax = {
+        "sentence": ["It is a #noun#. I see a #noun#."],
+        "noun": tags
+    };
+    var whereSyntax = {
+        "sentence": ["It is a #noun#. I see a #noun#."],
+        "noun": tags
+    };
+    var whenSyntax = {
+        "sentence": ["It is a #noun#. I see a #noun#."],
+        "noun": tags
+    };
+    var whySyntax = {
+        "sentence": ["It is a #noun#. I see a #noun#."],
+        "noun": tags
+    };
+
+    var grammar = createGrammar(syntax);
+    grammar.addModifiers(baseEngModifiers);
+    var response = grammar.flatten('#sentence#')
+    console.log(response)
+    return response;
+  }
 
 router.post('/twilio-callback', function(req, res) {
 
@@ -58,26 +102,34 @@ router.post('/twilio-callback', function(req, res) {
     // var status = new Status(msgToSave)
     var twilioResp = new twilio.TwimlResponse();
 
-// Now let's craft our response!
-    var tokens = incomingMsg.split(/\W+/);
+    // Now let's craft our response!
+    // var tokens = incomingMsg.split(/\W+/);
+    var people = nlp.text(incomingMsg).people();
+    console.log = people;
 
-    for (var i = 0; i < tokens.length; i++) {
-        var word = tokens[i];
-        console.log(word);
-        var response;
+    var response = "Hey! We're just testing here.";
 
-        if (word === 'Hello') {
-            response = "Hey! I'm your virtual internet self. You can ask me anything.";
-        } else if (word === 'me') {
-            response = "You really want to know?";
-        } else if (word === 'I') {
-            response = "I or we?";
-        }else if (word === 'we') {
-            response = "We love to talk.";
-        }else {
-            response = "Interesting... Tell me more.";
-        }
-    }
+    // for (var i = 0; i < tokens.length; i++) {
+    //     var word = tokens[i];
+    //     console.log(word);
+    //     var response;
+    //
+    //     // COME BACK WITH NLP for sure
+    //     // var sentence = nlp.sentence_type(twilioResp);
+    //
+    //     if (word === 'Hello') {
+    //         response = "Hey! I'm your mirror self. You can ask me anything.";
+    //     } else if (word === 'me') {
+    //         response = "You really want to know?";
+    //     } else if (word === 'I') {
+    //         response = "I or we?";
+    //     } else if (word === 'we') {
+    //         response = "We love to talk.";
+    //     } else {
+    //         response = "Interesting... Tell me more.";
+    //     }
+    // }
+
     twilioResp.sms(response);
     res.send(twilioResp.toString());
 

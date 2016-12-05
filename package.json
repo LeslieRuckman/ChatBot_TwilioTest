@@ -14,6 +14,7 @@
     "hogan-express": "^0.5.2",
     "mongoose": "^4.1.10",
     "morgan": "~1.6.1",
+    "nlp_compromise": "^6.5.3",
     "node-env-file": "^0.1.7",
     "serve-favicon": "~2.3.0",
     "tracery-grammar": "^2.7.3",
